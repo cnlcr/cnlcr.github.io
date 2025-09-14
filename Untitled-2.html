@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低碳大赛平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: url('headernoshadow.png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .header h1 {
+            color: #2cb72f;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            line-height: 1.3;
+        }
+        
+        .title-part1 {
+            font-size: 22px;
+            color: #2cb72f;
+        }
+        
+        .title-part2 {
+            font-size: 28px;
+            color: #2cb72f;
+            font-weight: 800;
+            margin: 3px 0;
+        }
+        
+        .title-part3 {
+            font-size: 22px;
+            color: #2cb72f;
+        }
+        
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 16px;
+            font-size: 16px;
+            color: #757575;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #000000;
+            font-weight: bold;        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #424242;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #00796b;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #50d052;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            opacity: 0.2;
+        }
+        
+ 
+        
+        .register-link {
+            text-align: right;
+        }
+        
+        .register-link a {
+            color: #757575;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-title-container">
+                <img src="logo.png" alt="Logo" class="header-logo">
+                <div class="header-title">
+                    <h1>
+                        <span class="title-part1">大学生</span>
+                        <span class="title-part2"> 低碳循环 </span>
+                        <span class="title-part3">科技创新大赛</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-box">
+            <div class="tabs">
+                <div class="tab active" id="account-tab">账户登录</div>
+                <div class="tab" id="sms-tab">短信登录</div>
+            </div>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="请输入手机号">
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="请输入密码">
+                </div>
+                
+                <button class="login-btn" id="login-button">登陆</button>
+                
+                <div class="register-link">
+                    <a href="#">立即注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 选项卡切换功能
+        document.getElementById('sms-tab').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('account-tab').classList.remove('active');
+            
+            // 切换到短信登录的表单
+            document.querySelector('.form-container').innerHTML = `
+                <div class="form-group">
+                    <label for="sms-phone">请输入手机号</label>
+                    <input type="tel" id="sms-phone" placeholder="请输入手机号">
+                </div>
+                
+                <div class="form-group">
+                    <label for="sms-code">请输入验证码</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="sms-code" placeholder="请输入验证码" style="flex: 1;">
+                        <button style="padding: 0 15px; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 6px; cursor: pointer;">获取验证码</button>
+                    </div>
+                </div>
+                
+                <button class="login-btn" id="sms-login-button">登陆</button>
+                
+                <div class="register-link">
+                    <a href="#">立即注册</a>
+                </div>
+            `;
+            
+            // 为短信登录按钮添加事件
+            document.getElementById('sms-login-button').addEventListener('click', login);
+        });
+        
+        document.getElementById('account-tab').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('sms-tab').classList.remove('active');
+            
+            // 切换回账户登录的表单
+            document.querySelector('.form-container').innerHTML = `
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="请输入手机号">
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="请输入密码">
+                </div>
+                
+                <button class="login-btn" id="login-button">登陆</button>
+                
+                <div class="register-link">
+                    <a href="#">立即注册</a>
+                </div>
+            `;
+            
+            // 为账户登录按钮添加事件
+            document.getElementById('login-button').addEventListener('click', login);
+        });
+        
+        // 登录功能实现
+        function login() {
+            const phone = document.getElementById('phone') ? document.getElementById('phone').value : 
+                         document.getElementById('sms-phone') ? document.getElementById('sms-phone').value : '';
+            
+            if (!phone) {
+                alert('请输入手机号');
+                return;
+            }
+            
+            // 在实际应用中，这里应该添加表单验证和API调用
+            // 模拟登录过程
+            alert('正在跳转...');
+            
+            // 跳转到图片页面
+            window.location.href = 'image-page.html';
+        }
+        
+        // 初始为账户登录按钮添加事件
+        document.getElementById('login-button').addEventListener('click', login);
+    </script>
+</body>
+</html>
